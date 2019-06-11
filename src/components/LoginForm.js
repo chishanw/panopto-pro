@@ -5,19 +5,30 @@ import CardSection from './common/CardSection.js';
 import Input from './common/Input.js';
 
 class LoginForm extends Component {
-    state = { text: '' };
+    state = { email: '', password: '' };
 
     render() {
         return (
             <View>
-                <Card cardTitle="login">
+                <Card cardTitle="LumiNUS Login">
                     <CardSection>
-                        <TextInput 
-                            value={this.state.text}
-                            onChangeText={text => this.setState({ text })}
-                            style={{height:20, width:100, borderWidth: 1, borderColor: '#000'}}/>
+                        <Input 
+                            label="Email"
+                            value={this.state.email}
+                            onChangeText={email => this.setState({ email })}
+                            placeholder="user@u.nus.edu"
+                        />
                     </CardSection>
-                    <CardSection />
+
+                    <CardSection>
+                        <Input 
+                            label="Password"
+                            value={this.state.password}
+                            onChangeText={password => this.setState({ password })}
+                            placeholder="password"
+                            secureTextEntry
+                        />
+                    </CardSection>
                 </Card>
             </View>
         );

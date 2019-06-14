@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { View } from 'react-native';
 import Card from './common/Card.js';
 import CardSection from './common/CardSection.js';
 import Input from './common/Input.js';
+import Button from './common/Button.js'
 
 class LoginForm extends Component {
     state = { email: '', password: '' };
@@ -28,6 +29,10 @@ class LoginForm extends Component {
                             placeholder="password"
                             secureTextEntry
                         />
+                    </CardSection>
+
+                    <CardSection>
+                        <Button buttonText="Submit"/>
                     </CardSection>
                 </Card>
             </View>

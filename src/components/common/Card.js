@@ -30,10 +30,11 @@ const styles = {
         fontSize: 18,
         fontWeight: 'bold',
         paddingLeft: 15,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingTop: 7,
+        paddingBottom: 7,
         borderBottomWidth: 1,
         borderColor: '#ddd',
+        textAlign: 'center'
     }
 };
 

@@ -8,9 +8,17 @@ import Button from './common/Button.js'
 class LoginForm extends Component {
     state = { email: '', password: '' };
 
+    static navigationOptions = {
+        title: 'Sign In',
+        headerTitleStyle: {
+            textAlign: 'center',
+            justifyContent: 'center'
+        }
+    };
+
     render() {
         return (
-            <View>
+            <View style={{flex: 1, alignSelf: 'stretch'}}>
                 <Card cardTitle="LumiNUS Login">
                     <CardSection>
                         <Input 
@@ -32,7 +40,8 @@ class LoginForm extends Component {
                     </CardSection>
 
                     <CardSection>
-                        <Button buttonText="Submit"/>
+                        <Button buttonText="Submit"
+                        onPress={() => this.props.navigation.navigate('Home')}/>
                     </CardSection>
                 </Card>
             </View>

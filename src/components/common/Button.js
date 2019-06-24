@@ -17,9 +17,10 @@ const Button = ({ buttonText, onPress }) => {
 
 const styles = {
     buttonStyle: {
-        height: 10,
+        height: 30,
         flex: 1,
         alignSelf: 'stretch',
+        justifyContent: 'center',
         borderRadius: 5,
         borderWidth: 1,
         borderColor: "#007aff",

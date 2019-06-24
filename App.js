@@ -1,41 +1,31 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-//import Button from './src/components/common/Button.js';
+import LoginForm from './src/components/LoginForm';
+import HomePage from './src/components/HomePage';
+import VideoScreen from './src/components/VideoScreen';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button title="Go to details"
-        onPress={() => this.props.navigation.navigate('Details')} />
-      </View>
-    );
-  }
-}
+//onPress={() => this.props.navigation.navigate('Details')}
 
-class DetailsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-}
-
-const RootStack = createStackNavigator(
+const AppStackNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
-    Details: DetailsScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
+    loginFlow: { 
+      screen: createStackNavigator({
+        Login: LoginForm
+      })
+    },
+    mainFlow: {
+      screen: createStackNavigator({
+        Home: HomePage,
+        Video: VideoScreen
+      })
+    }
+  }, 
+  
+  { defaultNavigationOptions: { header: null }
+});
 
-const AppContainer = createAppContainer(RootStack);
+const AppContainer = createAppContainer(AppStackNavigator);
 
 export default class App extends React.Component {
   render() {

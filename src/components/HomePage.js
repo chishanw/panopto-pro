@@ -10,7 +10,7 @@ class HomePage extends Component {
 
     render() {
         return (
-            <Card>
+            <Card titleAvailable={false} cardTitle="" cardSubtitle="">
                 <CardSection>
                     <Button buttonText="Modules" />
                 </CardSection>
@@ -21,7 +21,12 @@ class HomePage extends Component {
 
                 <CardSection>
                     <Button buttonText="Unfinished" 
-                    onPress={() => this.props.navigation.navigate('Video')}/>
+                    onPress={() => this.props.navigation.navigate('VideoList')}/>
+                </CardSection>
+
+                <CardSection>
+                    <Button buttonText="Upload Video"
+                    onPress={() => this.props.navigation.navigate('Upload')} />
                 </CardSection>
             </Card>
         );

@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-const Card = (props) => {
-    return (
-        <View style={styles.containerStyle}>
-            <Text style={styles.titleStyle}>{props.cardTitle}</Text>
-            {props.children}
-        </View>
-    );
-};
+class Card extends Component {
+    renderTitle() {
+        const available = this.props.titleAvailable;
+        if (available) {
+            return (
+                <View>
+                    <Text style={styles.titleStyle}>{this.props.cardTitle}</Text>
+                    <Text style={styles.subtitleStyle}>{this.props.cardSubtitle}</Text>
+                </View>
+            );
+        }
+    }
+    render() {
+        return (
+            <View style={styles.containerStyle}>
+                {this.renderTitle()}
+                {this.props.children}
+            </View>
+        );
+    };
+}
 
 const styles = {
     containerStyle: {
@@ -31,10 +44,15 @@ const styles = {
         fontWeight: 'bold',
         paddingLeft: 15,
         paddingTop: 7,
+        textAlign: 'center'
+    },
+    subtitleStyle: {
+        fontSize: 14,
+        textAlign: 'center',
+        paddingTop: 4,
         paddingBottom: 7,
         borderBottomWidth: 1,
-        borderColor: '#ddd',
-        textAlign: 'center'
+        borderColor: '#ddd'
     }
 };
 

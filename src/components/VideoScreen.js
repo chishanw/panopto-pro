@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import Video from 'react-native-video';
 import {
-    TouchableWithoutFeedback,
-    TouchableHighlight,
-    TouchableOpacity,
-    ImageBackground,
-    PanResponder,
-    StyleSheet,
-    Animated,
-    Easing,
-    Image,
-    View,
-    Text
+    TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity,
+    ImageBackground, PanResponder, StyleSheet, Animated,
+    Easing, Image, View, Text
 } from 'react-native';
 import _ from 'lodash';
 
 export default class VideoScreen extends Component {
+
+    static navigationOptions = ({navigation}) => {
+        return {
+        headerVisible: navigation.getParam('headerVisible', true)
+        };
+    };
 
     static defaultProps = {
         toggleResizeModeOnFullscreen:   true,
@@ -23,7 +21,7 @@ export default class VideoScreen extends Component {
         playWhenInactive:               false,
         showOnStart:                    true,
         resizeMode:                     'contain',
-        paused:                         false,
+        paused:                         true,
         repeat:                         false,
         volume:                         1,
         muted:                          false,
@@ -147,8 +145,6 @@ export default class VideoScreen extends Component {
             containerStyle: this.props.style || {}
         };
     }
-
-
 
     /**
     | -------------------------------------------------------
@@ -431,9 +427,11 @@ export default class VideoScreen extends Component {
         }
 
         if (state.isFullscreen) {
+            this.props.navigation.setParams('headerVisible', false);
             typeof this.events.onEnterFullscreen === 'function' && this.events.onEnterFullscreen();
         }
         else {
+            this.props.navigation.setParams('headerVisible', true);
             typeof this.events.onExitFullscreen === 'function' && this.events.onExitFullscreen();
         }
 

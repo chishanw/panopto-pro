@@ -11,7 +11,7 @@ export default class VideoScreen extends Component {
 
     static navigationOptions = ({navigation}) => {
         return {
-        headerVisible: navigation.getParam('headerVisible', true)
+            headerVisible: navigation.getParam('headerVisible', true)
         };
     };
 
@@ -61,6 +61,8 @@ export default class VideoScreen extends Component {
             currentTime: 0,
             error: false,
             duration: 0,
+
+            videoUrl: ''
         };
 
         /**
@@ -664,6 +666,10 @@ export default class VideoScreen extends Component {
      * pan responders.
      */
     componentWillMount() {
+        const { navigation } = this.props;
+        const sauce = navigation.getParam('videoSource');
+        this.setState({videoUrl: sauce});
+
         this.initSeekPanResponder();
         this.initVolumePanResponder();
     }
@@ -1117,6 +1123,7 @@ export default class VideoScreen extends Component {
      * Provide all of our options and render the whole component.
      */
     render() {
+
         return (
             <TouchableWithoutFeedback
                 onPress={ this.events.onScreenTouch }
@@ -1141,7 +1148,7 @@ export default class VideoScreen extends Component {
 
                         style={[ styles.player.video, this.styles.videoStyle ]}
 
-                        source={ require('../assets/ohmy.mp4') }
+                        source={ { uri: this.state.videoUrl } }
                     />
                     { this.renderError() }
                     { this.renderTopControls() }

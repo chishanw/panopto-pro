@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './common/Card';
+import NavigationPage from './common/NavigationPage';
 import CardSection from './common/CardSection';
 import Button from './common/Button';
 
@@ -10,7 +11,7 @@ class HomePage extends Component {
 
     render() {
         return (
-            <Card titleAvailable={false} cardTitle="" cardSubtitle="">
+            <NavigationPage>
                 <CardSection>
                     <Button buttonText="Modules" />
                 </CardSection>
@@ -20,15 +21,15 @@ class HomePage extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="Unfinished" 
+                    <Button buttonText="Continue Watching" 
                     onPress={() => this.props.navigation.navigate('VideoList')}/>
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="Upload Video"
+                    <Button buttonText="Share Videos"
                     onPress={() => this.props.navigation.navigate('Upload')} />
                 </CardSection>
-            </Card>
+            </NavigationPage>
         );
     };
 }

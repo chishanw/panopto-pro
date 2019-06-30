@@ -32,11 +32,12 @@ const styles = {
         shadowColor: '#000',
 		shadowOffset: { width: 0, height: 3},
         shadowOpacity: 0.3,
-        shadowRadius: 2,
+        shadowRadius: 5,
         elevation: 1,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 10 
+        marginTop: 10,
+        marginBottom: 3
     },
     titleStyle: {
         fontFamily: 'san-serif',

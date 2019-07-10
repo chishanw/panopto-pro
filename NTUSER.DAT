@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "panoptopro",
+  "private_key_id": "764baa1e24fe1e2467f9157dd5acd5c4de385c16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCuJnyqC2HIauLu\nHwNEdxy4bIyKfQ1qJsH3Ioc9fODeF+lxJQmDCJDwqIDZBFOwjA/tXlYZdB6/WuLj\nmw7lKNt8KYmJ45QdT1/VI7g+e9xfNohih7f+RUqR8nRZAPldWlh/+i0UTQ2c4UxD\n83mymCzcG6Tj4MXmzFELqKMeTx8aAC7QgH840xxUO0vDKk/F8TMYg+8o2orOtCNP\noCZatV4w9fYaFCtqj5815ijuWg9BCVphaHcbVYgqsiu6mHY/l6LR2OKS5QcbvnBv\nVHa8p7rKaJfTG7LwwCxoHm9EzTR6VfOcTU1ZTe6NHYfIlXgOCldhZ26BdVT2czBN\nxHsUOBzLAgMBAAECggEASJnX5+YF1lElGONJ7+1+Ri5Oqt92S7Yrr7Uvz0Tz0/MB\nCX/Ixt0323RL/u0MXLIPY8QrvcHInbqskvmODJ/rXIhOg/MhyNRR3d/dzALD/NeV\npQnyfSjy7QQ4V/CNhMsI0RWBXJDA55GPQ1bJ+dfx/7Lwm2WV62FrOiKMGjMfAq22\nFs0+hEVdpUFmQKpSHzPj2sN0PSz3EvK4s/SBbtmfIp7rlVN8dbbYuwC8FVlekDVl\nnRRqzp+VRip5m6cFYWU4n3dFW6Wug9c0ELWSoX7RSlczr3PCDjcFpW7tSWyWytUj\n2R7G8EzV8S1NNk0+f7fuGgf4IcVGSzNigZMQW83PAQKBgQDyldl9pMotXwOhApAe\nuSk64zyAgey7v3x1EqX6hjCov36SBK5o/w1Us/x4zxq41zXy8A1R++MQs2a2FJ90\nyv0lxKV2bglw8h1fKQ9/NA7+eup+uPJBYucXCMsI/uer7vkTsO9bhhzGq0kGluSV\ns2n0jQQStrx2Ltmsl9LE3i8RAQKBgQC3x9b48Zlnd8Sau9/feHgqXlXIQChpHGcj\nRq2Fjsl5hASti8pUJfZtSjy2xOwDAtY4rYPnueNA0+UvNqlgDNl5DIIsalEIPbYm\nkYSSRbb10lC5WYH4bMHmITPc7ic7sD0b5zNsZY++JbQUxOu3DSNVDTJ8/yEBvmWQ\n1p3M1zShywKBgQDb+gDIS7e+nutmhTF1esiliswhaC/pLMJKU4fJfwf+7e9zr+UM\nd0R6a+BlGMENnrJgQ0iA8J4+VcCtGlRij3QxXHoCw9Ox5Qu3cD+KRQXXxFSCZ2ne\n2zXdEG81EBm7MrARKCBVaW8MxOQqoohUK+bICVwJMEYEEYX4WZCaTzR1AQKBgQCd\noZbNp8xAZwYHAiYfcyD+ljNVs1H19hqwsyqaZ8J/q7CnekNssbMQQqCY04brfj9o\nFcwRsest65GkUWotrFfL7+KnXflq7COUKTRgkdNAPchnclJ8VixpywjE8rBMDfoc\nOM5upx4HpiczuUPEmkw34z3u4JXa/Qf4l1x6GgxWyQKBgQDW27fgJIqVTXLEppkW\n1dH6UvD6IY2Hjrb9kGNNffZYCQkpU5E1wfrvqYTJD83G5GiJ8MBjMIYDWk0tnHAD\n0w+wJDdEbuAQT/D+Hda+Lqk73TYM799RpzWAnLcN5ses5tQYonXsyZKKkob6XEbT\nM08jTu9ez/wBshwUuw4YfbbkLw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-nb6um@panoptopro.iam.gserviceaccount.com",
+  "client_id": "113663628142430554847",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-nb6um%40panoptopro.iam.gserviceaccount.com"
+}

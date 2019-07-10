@@ -871,7 +871,7 @@ export default class VideoScreen extends Component {
                 }
             ]}>
                 <ImageBackground
-                    source={ require( '../assets/top-vignette.png' ) }
+                    source={ require( '../../assets/top-vignette.png' ) }
                     style={[ styles.controls.column ]}
                     imageStyle={[ styles.controls.vignette ]}>
                     <View style={ styles.controls.topControlGroup }>
@@ -899,7 +899,7 @@ export default class VideoScreen extends Component {
 
         return this.renderControl(
             <Image
-                source={ require( '../assets/back.png' ) }
+                source={ require( '../../assets/back.png' ) }
                 style={ styles.controls.back }
             />,
             this.events.onBack,
@@ -929,7 +929,7 @@ export default class VideoScreen extends Component {
                     ]}
                     { ...this.player.volumePanResponder.panHandlers }
                 >
-                    <Image style={ styles.volume.icon } source={ require( '../assets/volume.png' ) } />
+                    <Image style={ styles.volume.icon } source={ require( '../../assets/volume.png' ) } />
                 </View>
             </View>
         );
@@ -940,7 +940,7 @@ export default class VideoScreen extends Component {
      */
     renderFullscreen() {
 
-        let source = this.state.isFullscreen === true ? require( '../assets/shrink.png' ) : require( '../assets/expand.png' );
+        let source = this.state.isFullscreen === true ? require( '../../assets/shrink.png' ) : require( '../../assets/expand.png' );
         return this.renderControl(
             <Image source={ source } />,
             this.methods.toggleFullscreen,
@@ -966,7 +966,7 @@ export default class VideoScreen extends Component {
                 }
             ]}>
                 <ImageBackground
-                    source={ require( '../assets/bottom-vignette.png' ) }
+                    source={ require( '../../assets/bottom-vignette.png' ) }
                     style={[ styles.controls.column ]}
                     imageStyle={[ styles.controls.vignette ]}>
                     { seekbarControl }
@@ -1024,7 +1024,7 @@ export default class VideoScreen extends Component {
      */
     renderPlayPause() {
 
-        let source = this.state.paused === true ? require( '../assets/play.png' ) : require( '../assets/pause.png' );
+        let source = this.state.paused === true ? require( '../../assets/play.png' ) : require( '../../assets/pause.png' );
         return this.renderControl(
             <Image source={ source } />,
             this.methods.togglePlayPause,
@@ -1077,7 +1077,7 @@ export default class VideoScreen extends Component {
         if ( this.state.loading ) {
             return (
                 <View style={ styles.loader.container }>
-                    <Animated.Image source={ require( '../assets/loader-icon.png' ) } style={[
+                    <Animated.Image source={ require( '../../assets/loader-icon.png' ) } style={[
                         styles.loader.icon,
                         { transform: [
                             { rotate: this.animations.loader.rotate.interpolate({
@@ -1096,7 +1096,7 @@ export default class VideoScreen extends Component {
         if ( this.state.error ) {
             return (
                 <View style={ styles.error.container }>
-                    <Image source={ require( '../assets/error.png' ) } style={ styles.error.icon } />
+                    <Image source={ require( '../../assets/error.png' ) } style={ styles.error.icon } />
                     <Text style={ styles.error.text }>
                         Video unavailable
                     </Text>

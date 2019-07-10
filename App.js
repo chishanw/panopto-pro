@@ -1,13 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, YellowBox } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import LoginForm from './src/components/LoginForm';
 import SignupForm from './src/components/SignupForm';
 import HomePage from './src/components/HomePage';
-import VideoScreen from './src/components/VideoScreen';
+import VideoScreen from './src/components/common/VideoScreen';
 import VideoList from './src/components/VideoList';
 import firebase from 'firebase';
 import UploadScreen from './src/components/UploadScreen';
+import ModulesPage from './src/components/ModulesPage';
+import ModuleVideoList from './src/components/ModuleVideoList';
+
+import _ from 'lodash';
+import Playlists from './src/components/Playlists';
 
 //onPress={() => this.props.navigation.navigate('Details')}
 
@@ -25,6 +30,20 @@ const AppStackNavigator = createStackNavigator(
         Upload: UploadScreen,
         VideoList: VideoList,
         Video: VideoScreen
+      })
+    },
+
+    modulesFlow: {
+      screen: createStackNavigator({
+        ModulesPage: ModulesPage,
+        ModuleVideoList: ModuleVideoList,
+        Video: VideoScreen
+      })
+    },
+
+    playlistsFlow: {
+      screen: createStackNavigator({
+        PlaylistsPage: Playlists
       })
     }
   }, 
@@ -48,6 +67,14 @@ export default class App extends React.Component {
   }
 
   render() {
+    YellowBox.ignoreWarnings(['Setting a timer']);
+    const _console = _.clone(console);
+    console.warn = message => {
+      if (message.indexOf('Setting a timer') <= -1) {
+        _console.warn(message);
+      }
+    };
+
     return <View style={{flex: 1}}><AppContainer /></View>;
   }
 }

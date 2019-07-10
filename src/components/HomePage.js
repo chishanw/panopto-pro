@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from './common/Card';
 import NavigationPage from './common/NavigationPage';
 import CardSection from './common/CardSection';
 import Button from './common/Button';
@@ -13,11 +12,13 @@ class HomePage extends Component {
         return (
             <NavigationPage>
                 <CardSection>
-                    <Button buttonText="Modules" />
+                    <Button buttonText="Modules" 
+                    onPress={() => this.props.navigation.navigate('ModulesPage')}/>
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="Playlists" />
+                    <Button buttonText="Playlists" 
+                    onPress={() => this.props.navigation.navigate('PlaylistsPage')}/>
                 </CardSection>
 
                 <CardSection>

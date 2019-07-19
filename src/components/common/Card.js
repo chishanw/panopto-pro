@@ -40,15 +40,15 @@ const styles = {
         marginBottom: 3
     },
     titleStyle: {
-        fontFamily: 'san-serif',
+        fontFamily:'Quicksand-Bold',
         fontSize: 18,
-        fontWeight: 'bold',
         paddingLeft: 15,
         paddingTop: 7,
         textAlign: 'center'
     },
     subtitleStyle: {
         fontSize: 14,
+        fontFamily:'Quicksand-Regular',
         textAlign: 'center',
         paddingTop: 4,
         paddingBottom: 7,

@@ -70,6 +70,34 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Muli-Bold.ttf</string>
+		<string>Muli-BoldItalic.ttf</string>
+		<string>Muli-Light.ttf</string>
+		<string>Muli-LightItalic.ttf</string>
+		<string>Muli-Regular.ttf</string>
+		<string>Muli-RegularItalic.ttf</string>
+		<string>Quicksand-Bold.ttf</string>
+		<string>Quicksand-Light.ttf</string>
+		<string>Quicksand-Medium.ttf</string>
+		<string>Quicksand-Regular.ttf</string>
+		<string>Raleway-Bold.ttf</string>
+		<string>Raleway-BoldItalic.ttf</string>
+		<string>Raleway-Light.ttf</string>
+		<string>Raleway-LightItalic.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+		<string>Raleway-RegularItalic.ttf</string>
+		<string>Arimo-Bold.ttf</string>
+		<string>Arimo-BoldItalic.ttf</string>
+		<string>Arimo-Regular.ttf</string>
+		<string>Arimo-RegularItalic.ttf</string>
+		<string>Univers-black-italic.ttf</string>
+		<string>Univers-light-italic.ttf</string>
+		<string>Univers-light-normal.ttf</string>
+		<string>UniversBlack.ttf</string>
+		<string>UniversLTStd-Bold.otf</string>
+		<string>UniversLTStd-BoldObl.otf</string>
+		<string>UniversLTStd-Obl.otf</string>
+		<string>UniversLTStd.otf</string>
 	</array>
 </dict>
 </plist>

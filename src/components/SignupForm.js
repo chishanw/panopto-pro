@@ -14,8 +14,9 @@ class SignupForm extends Component {
 
     static navigationOptions = {
         tabBarLabel: 
-            <Text style={{paddingBottom: 14, alignSelf: 'center', letterSpacing: 3,
-                textAlign: 'center', fontSize: 16, textTransform: 'uppercase'}}>
+            <Text style={{paddingBottom: 14, alignSelf: 'center', letterSpacing: 2,
+                textAlign: 'center', fontSize: 16, textTransform: 'uppercase',
+                fontFamily:'Arimo-Bold'}}>
                 Sign Up
             </Text>
     };

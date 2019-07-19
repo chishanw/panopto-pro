@@ -1,40 +1,43 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import CardList from './common/CardList';
 import firebase from 'firebase';
+import 'firebase/firestore';
 
 class ModuleVideoList extends Component {
     static navigationOptions = {
         title: 'Module Videos'
     };
 
-    state = {
-        videos: []
+    constructor(){
+        super();
+        
+        this.state = {
+            videoNames: [],
+            videoUrls: []
+        };
     };
 
     componentWillMount() {
-        const storage = firebase.storage();
-        const pathReference = storage.ref('videos');
+        const firestoreRef = firebase.firestore().collection('video-links');
+        const storageRef = firebase.storage().ref('videos');
+        var tempNames = [];
+        var tempUrls = [];
 
-        pathReference.child('SampleVideo_1280x720_1mb.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
+        firestoreRef.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                const filename = doc.id;
+                tempNames.push(filename);
+            }.bind(this));
+            this.setState( { videoNames: tempNames } );
 
-        pathReference.child('SampleVideo_1280x720_2mb.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
-
-        pathReference.child('ohmy.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
-    }
-
-    //for debugging purposes
-    renderVideoUrls() {
-        return this.state.videos.map(x => <Text>{x}</Text>);
+            this.state.videoNames.forEach((filename) => {
+                storageRef.child(filename).getDownloadURL().then((url) => {
+                    tempUrls.push(url);
+                    this.setState( { videoUrls: tempUrls } );
+                });
+            });
+        }.bind(this));
     }
 
     render() {
@@ -42,15 +45,15 @@ class ModuleVideoList extends Component {
         
         return (
             <ScrollView>
-                {this.state.videos.map(eachVideo => {
+                {this.state.videoUrls.map(eachVideo => {
                     videoIdx++;
                     const idx = videoIdx.toString();
 
                     return <CardList onPress={() => this.props.navigation.navigate('Video', { videoSource: eachVideo})}
-                        videoTitle={'Lecture ' + idx}
-                        imageSource='https://3.img-dpreview.com/files/p/E~TS590x0~articles/8692662059/8283897908.jpeg'
                         key={eachVideo}
-                        />}
+                        videoTitle={'Lecture ' + idx}
+                        imageSource='https://3.img-dpreview.com/files/p/E~TS590x0~articles/8692662059/8283897908.jpeg'/>
+                    }
                 )}
             </ScrollView>
         );

@@ -8,33 +8,35 @@ class VideoList extends Component {
         title: 'Continue Watching'
     };
 
-    state = {
-        videos: []
+    constructor(){
+        super();
+        
+        this.state = {
+            videoNames: [],
+            videoUrls: []
+        };
     };
 
     componentWillMount() {
-        const storage = firebase.storage();
-        const pathReference = storage.ref('videos');
+        const firestoreRef = firebase.firestore().collection('video-links');
+        const storageRef = firebase.storage().ref('videos');
+        var tempNames = [];
+        var tempUrls = [];
 
-        pathReference.child('SampleVideo_1280x720_1mb.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
+        firestoreRef.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                const filename = doc.id;
+                tempNames.push(filename);
+            }.bind(this));
+            this.setState( { videoNames: tempNames } );
 
-        pathReference.child('SampleVideo_1280x720_2mb.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
-
-        pathReference.child('ohmy.mp4').getDownloadURL().then((url) => {
-            var joined = this.state.videos.concat(url);
-            this.setState({ videos: joined })
-        });
-    }
-
-    //for debugging purposes
-    renderVideoUrls() {
-        return this.state.videos.map(x => <Text>{x}</Text>);
+            this.state.videoNames.forEach((filename) => {
+                storageRef.child(filename).getDownloadURL().then((url) => {
+                    tempUrls.push(url);
+                    this.setState( { videoUrls: tempUrls } );
+                });
+            });
+        }.bind(this));
     }
 
     render() {
@@ -42,7 +44,7 @@ class VideoList extends Component {
         
         return (
             <ScrollView>
-                {this.state.videos.map(eachVideo => {
+                {this.state.videoUrls.map(eachVideo => {
                     videoIdx++;
                     const idx = videoIdx.toString();
 

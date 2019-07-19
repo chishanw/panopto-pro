@@ -1,11 +1,12 @@
 import React from 'react';
 import {TextInput, View, Text } from 'react-native';
+import AppText from './AppText';
 
 const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
     const { inputStyle, labelStyle, containerStyle } = styles;
     return (
         <View style={containerStyle}>
-            <Text style={labelStyle}>{label}</Text>
+            <Text style={labelStyle}><AppText>{label}</AppText></Text>
             <TextInput 
                 value={value}
                 onChangeText={onChangeText}
@@ -20,6 +21,8 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 
 const styles = {
     inputStyle: {
+        fontFamily: 'UniversLTStd',
+        fontSize: 15,
         color: '#000',
         paddingRight: 5,
         paddingLeft: 5,
@@ -29,7 +32,6 @@ const styles = {
         borderBottomWidth: 1
     },
     labelStyle: {
-        fontSize: 16,
         paddingLeft: 20,
         flex: 1
     },

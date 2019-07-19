@@ -24,6 +24,7 @@ class UploadScreen extends Component {
             cardSubtitle="Share your educational resources here with a press of a button.">
                 <CardSection>
                 <Button buttonText="Upload"
+                onPress={() => this.props.navigation.navigate('Gallery')}
                 />
                 </CardSection>
             </Card>

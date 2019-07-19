@@ -10,6 +10,7 @@ import firebase from 'firebase';
 import UploadScreen from './src/components/UploadScreen';
 import ModulesPage from './src/components/ModulesPage';
 import ModuleVideoList from './src/components/ModuleVideoList';
+import Gallery from './src/components/Gallery';
 
 import _ from 'lodash';
 import Playlists from './src/components/Playlists';
@@ -32,7 +33,12 @@ const AppStackNavigator = createStackNavigator(
         Video: VideoScreen
       })
     },
-
+    uploadFlow: {
+      screen: createStackNavigator({
+        Upload: UploadScreen,
+        Gallery: Gallery
+      })
+    },
     modulesFlow: {
       screen: createStackNavigator({
         ModulesPage: ModulesPage,

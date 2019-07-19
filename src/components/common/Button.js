@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import AppText from './AppText';
 
 //Props:
 //buttonText: text on the button
@@ -10,7 +11,7 @@ const Button = ({ buttonText, onPress }) => {
 
     return (
         <TouchableOpacity onPress={onPress} style={buttonStyle}>
-            <Text style={textStyle}>{buttonText}</Text>
+            <Text style={textStyle}><AppText>{buttonText}</AppText></Text>
         </TouchableOpacity>
     );
 };
@@ -31,7 +32,6 @@ const styles = {
     },
     textStyle: {
         color: '#007aff',
-        fontSize: 14,
         fontWeight: '600',
         alignSelf: 'center',
         paddingTop: 4,

@@ -10,33 +10,34 @@ import firebase from 'firebase';
 import UploadScreen from './src/components/UploadScreen';
 import ModulesPage from './src/components/ModulesPage';
 import ModuleVideoList from './src/components/ModuleVideoList';
-import Gallery from './src/components/Gallery';
 
 import _ from 'lodash';
 import Playlists from './src/components/Playlists';
-
-//onPress={() => this.props.navigation.navigate('Details')}
+import ProfilePage from './src/components/ProfilePage';
+import ChangePassword from './src/components/ChangePassword';
 
 const AppStackNavigator = createStackNavigator(
   {
     loginFlow: { 
       screen: createBottomTabNavigator({
         Login: LoginForm,
-        Signup: SignupForm
+        Signup: SignupForm,
       })
     },
     mainFlow: {
       screen: createStackNavigator({
         Home: HomePage,
+        ModulesPage: ModulesPage,
+        PlaylistsPage: Playlists,
         Upload: UploadScreen,
         VideoList: VideoList,
-        Video: VideoScreen
+        Video: VideoScreen,
+        Profile: ProfilePage
       })
     },
     uploadFlow: {
       screen: createStackNavigator({
         Upload: UploadScreen,
-        Gallery: Gallery
       })
     },
     modulesFlow: {
@@ -50,6 +51,14 @@ const AppStackNavigator = createStackNavigator(
     playlistsFlow: {
       screen: createStackNavigator({
         PlaylistsPage: Playlists
+      })
+    },
+    profileFlow: {
+      screen: createStackNavigator({
+        Home: HomePage,
+        Profile: ProfilePage,
+        ChangePassword: ChangePassword,
+        LoginForm: LoginForm
       })
     }
   }, 

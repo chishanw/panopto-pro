@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image } from 'react-native';
+import { Text, Image, View } from 'react-native';
 import Card from './Card.js';
 import CardSection from './CardSection.js';
 import { TouchableHighlight } from 'react-native-gesture-handler';
@@ -10,6 +10,7 @@ class CardList extends Component {
             <Card titleAvailable={false} cardTitle="" cardSubtitle="">
                 <CardSection>
                     <TouchableHighlight onPress={this.props.onPress} style={{width: '100%'}}>
+                        {/* <View style={styles.imageStyle}>{this.props.imageSource}</View> */}
                         <Image style={styles.imageStyle} source={{uri: this.props.imageSource}} />
                     </TouchableHighlight>
                 </CardSection>

@@ -1,56 +1,93 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
+import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
+
 import Card from './common/Card.js';
 import CardSection from './common/CardSection.js';
 import Input from './common/Input.js';
-import Button from './common/Button.js';
+import MyButton from './common/MyButton.js';
 import Spinner from './common/Spinner';
 
-//this.props.navigation.navigate('Home') 
-
 class SignupForm extends Component {
-    state = { email: '', password: '', error: '', loading: false };
+    state = { 
+        email: '', 
+        password: '', 
+        retypePassword: '',
+        hasError: false,
+        displayMessage: '', 
+        loading: false 
+    };
 
     static navigationOptions = {
         tabBarLabel: 
             <Text style={{paddingBottom: 14, alignSelf: 'center', letterSpacing: 2,
                 textAlign: 'center', fontSize: 16, textTransform: 'uppercase',
-                fontFamily:'Arimo-Bold'}}>
+                fontFamily:'Quicksand-Bold', color: '#007aff'}}>
                 Sign Up
             </Text>
     };
 
     onButtonPress() {
-        const { email, password } = this.state;
+        const { email, password, retypePassword } = this.state;
 
-        this.setState({error: '', loading: true});
+        this.setState({displayMessage: '', loading: true});
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(this.onLoginSuccess.bind(this))
-        .catch(this.onLoginFail.bind(this));
+        if (password.length >= 6) {
+            if (password == retypePassword) {
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(this.onSignupSuccess.bind(this))
+                // .catch(this.onSignupFail.bind(this));
+            } else {
+                this.onPasswordMatchFail();
+            }
+        } else {
+            this.onPasswordLengthFail();
+        }
     }
 
-    onLoginSuccess() {
-        //firebase.auth().signInWithEmailAndPassword(email, password);
-        
+    onSignupSuccess() {        
         this.setState({
             email: '',
             password: '',
-            error: 'Created an account.',
+            retypePassword: '',
+            hasError: false,
+            displayMessage: 'Created an account.',
             loading: false
         });
-
-        //this.props.navigation.navigate('Home');
     }
 
-    onLoginFail() {
+    onSignupFail() {
         this.setState({
             email: '',
             password: '',
-            error: 'Authentication failed.',
+            retypePassword: '',
+            hasError: true,
+            displayMessage: 'Authentication failed.',
             loading: false
         });
+    }
+
+    onPasswordMatchFail() {
+        this.setState({
+            email: '',
+            password: '',
+            retypePassword: '',
+            hasError: true,
+            displayMessage: 'Passwords must match.',
+            loading: false
+        })
+    }
+
+    onPasswordLengthFail() {
+        this.setState({
+            email: '',
+            password: '',
+            retypePassword: '',
+            hasError: true,
+            displayMessage: 'Passwords must be at least 6 characters.',
+            loading: false
+        })
     }
 
     renderButton() {
@@ -59,17 +96,21 @@ class SignupForm extends Component {
         }
 
         return (
-            <Button buttonText="Submit"
+            <MyButton buttonText="Submit"
             onPress={this.onButtonPress.bind(this)}/>
         );
     }
 
     render() {
+        const { titleStyle } = styles;
+
         return (
             <View style={{flex: 1, alignSelf: 'stretch'}}>
+                <Text style={titleStyle}>Panopto Pro</Text>
                 <Card titleAvailable={true} cardTitle="Sign Up" cardSubtitle="Register now to enhance your online learning experience!">
                     <CardSection>
                         <Input 
+                            icon={<Icon name="envelope" color="#2c6fb8" size={16}/>}
                             label="Email"
                             value={this.state.email}
                             onChangeText={email => this.setState({ email })}
@@ -79,9 +120,21 @@ class SignupForm extends Component {
 
                     <CardSection>
                         <Input 
+                            icon={<Icon name="key" color="#2c6fb8" size={16}/>}
                             label="Password"
                             value={this.state.password}
                             onChangeText={password => this.setState({ password })}
+                            placeholder="password"
+                            secureTextEntry
+                        />
+                    </CardSection>
+
+                    <CardSection>
+                        <Input 
+                            icon={<Icon name="key" color="#2c6fb8" size={16}/>}
+                            label="Confirm Password"
+                            value={this.state.retypePassword}
+                            onChangeText={retypePassword => this.setState({ retypePassword })}
                             placeholder="password"
                             secureTextEntry
                         />
@@ -92,12 +145,29 @@ class SignupForm extends Component {
                     </CardSection>
                 </Card>
 
-                <Text style={{color:'red', textAlign: 'center', paddingTop: 5}}>
-                    {this.state.error}
+                <Text 
+                    style={{
+                        fontFamily: 'Quicksand-Bold',
+                        color: this.state.hasError ? 'red' : 'green', 
+                        textAlign: 'center', 
+                        paddingTop: 5
+                    }}>
+                    {this.state.displayMessage}
                 </Text>
             </View>
         );
     };
+}
+
+const styles = {
+    titleStyle: {
+        fontFamily: 'Quicksand-Bold',
+        fontSize: 26,
+        color: '#2c6fb8',
+        textAlign: 'center',
+        marginTop: 25,
+        paddingBottom: 20
+    }
 }
 
 export default SignupForm;

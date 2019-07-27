@@ -1,0 +1,13 @@
+WEBVTT
+
+1
+00:00:00.00 --> 00:00:02.00
+These are caption frames
+from a sample file.
+
+2
+00:00:02.01 --> 00:00:05.00
+They're timed well and
+spelled wonderfully.
+
+NOTE Testing notes.

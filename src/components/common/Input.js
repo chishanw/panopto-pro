@@ -2,11 +2,16 @@ import React from 'react';
 import {TextInput, View, Text } from 'react-native';
 import AppText from './AppText';
 
-const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
-    const { inputStyle, labelStyle, containerStyle } = styles;
+const Input = ({ icon, label, value, onChangeText, placeholder, secureTextEntry }) => {
+    const { inputStyle, labelStyle, containerStyle, textStyle } = styles;
     return (
         <View style={containerStyle}>
-            <Text style={labelStyle}><AppText>{label}</AppText></Text>
+            <View style={labelStyle}>
+                {icon}
+                <Text style={textStyle}>
+                    <AppText>{label}</AppText>
+                </Text>
+            </View>
             <TextInput 
                 value={value}
                 onChangeText={onChangeText}
@@ -33,13 +38,17 @@ const styles = {
     },
     labelStyle: {
         paddingLeft: 20,
-        flex: 1
+        flex: 1,
+        flexDirection: 'row',
     },
     containerStyle: {
         height: 40,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    textStyle: {
+        paddingLeft: 10
     }
 };
 

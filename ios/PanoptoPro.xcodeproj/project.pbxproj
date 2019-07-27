@@ -89,6 +89,7 @@
 		FC1EEF93BD2741B59E6DE110 /* UniversLTStd-BoldObl.otf in Resources */ = {isa = PBXBuildFile; fileRef = D9FB6B72847B44458C11DAFF /* UniversLTStd-BoldObl.otf */; };
 		3E0C9964F5694302A2CE0A65 /* UniversLTStd-Obl.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8CF6397C81A44B798C3E5BC /* UniversLTStd-Obl.otf */; };
 		BB9BBB7DFA93457C854AF51D /* UniversLTStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 984ACEABB2EF4E399DF3331D /* UniversLTStd.otf */; };
+		A65099C0B26249FA9BCEC9D3 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75FBE3EF457C47AD93F1F648 /* Fontisto.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -451,6 +452,7 @@
 		D9FB6B72847B44458C11DAFF /* UniversLTStd-BoldObl.otf */ = {isa = PBXFileReference; name = "UniversLTStd-BoldObl.otf"; path = "../src/assets/fonts/UniversLTStd-BoldObl.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F8CF6397C81A44B798C3E5BC /* UniversLTStd-Obl.otf */ = {isa = PBXFileReference; name = "UniversLTStd-Obl.otf"; path = "../src/assets/fonts/UniversLTStd-Obl.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		984ACEABB2EF4E399DF3331D /* UniversLTStd.otf */ = {isa = PBXFileReference; name = "UniversLTStd.otf"; path = "../src/assets/fonts/UniversLTStd.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		75FBE3EF457C47AD93F1F648 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -774,6 +776,7 @@
 				D9FB6B72847B44458C11DAFF /* UniversLTStd-BoldObl.otf */,
 				F8CF6397C81A44B798C3E5BC /* UniversLTStd-Obl.otf */,
 				984ACEABB2EF4E399DF3331D /* UniversLTStd.otf */,
+				75FBE3EF457C47AD93F1F648 /* Fontisto.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				FC1EEF93BD2741B59E6DE110 /* UniversLTStd-BoldObl.otf in Resources */,
 				3E0C9964F5694302A2CE0A65 /* UniversLTStd-Obl.otf in Resources */,
 				BB9BBB7DFA93457C854AF51D /* UniversLTStd.otf in Resources */,
+				A65099C0B26249FA9BCEC9D3 /* Fontisto.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

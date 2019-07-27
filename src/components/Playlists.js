@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavigationPage from './common/NavigationPage';
 import CardSection from './common/CardSection';
-import Button from './common/Button';
+import MyButton from './common/MyButton';
 
 class Playlists extends Component {
     static navigationOptions = {
@@ -12,15 +12,15 @@ class Playlists extends Component {
         return (
             <NavigationPage>
                 <CardSection>
-                    <Button buttonText="Favourites" />
+                    <MyButton buttonText="Favourites" />
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="Important Videos" />
+                    <MyButton buttonText="Important Videos" />
                 </CardSection>
 
                 <CardSection>
-                    <Button buttonText="React Native Help Videos" />
+                    <MyButton buttonText="React Native Help Videos" />
                 </CardSection>
             </NavigationPage>
         );

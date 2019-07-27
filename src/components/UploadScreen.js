@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from './common/Card';
 import CardSection from './common/CardSection';
-import Button from './common/Button';
+import MyButton from './common/MyButton';
 import firebase from 'firebase';
 
 class UploadScreen extends Component {    
@@ -23,7 +23,7 @@ class UploadScreen extends Component {
             cardTitle="Upload web lectures!" 
             cardSubtitle="Share your educational resources here with a press of a button.">
                 <CardSection>
-                <Button buttonText="Upload"
+                <MyButton buttonText="Upload"
                 onPress={() => this.props.navigation.navigate('Gallery')}
                 />
                 </CardSection>

@@ -26,7 +26,7 @@ export default class VideoScreen extends Component {
         volume:                         1,
         muted:                          false,
         title:                          '',
-        rate:                           1,
+        rate:                           1
     };
 
     constructor( props ) {

@@ -15,6 +15,8 @@ import _ from 'lodash';
 import Playlists from './src/components/Playlists';
 import ProfilePage from './src/components/ProfilePage';
 import ChangePassword from './src/components/ChangePassword';
+import PlaylistsVideoList from './src/components/PlaylistsVideoList';
+import AddPlaylist from './src/components/AddPlaylist';
 
 const AppStackNavigator = createStackNavigator(
   {
@@ -50,7 +52,9 @@ const AppStackNavigator = createStackNavigator(
 
     playlistsFlow: {
       screen: createStackNavigator({
-        PlaylistsPage: Playlists
+        PlaylistsPage: Playlists,
+        PlaylistsVideoList: PlaylistsVideoList,
+        AddPlaylist: AddPlaylist
       })
     },
     profileFlow: {

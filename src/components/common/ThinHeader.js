@@ -4,32 +4,22 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from '../../../node_modules/react-native-vector-icons/FontAwesome';
 
 //props: 
-// subheader="" 
-// subtitle=""
 // leftIcon=""
 // rightIcon=""
 // onLeftPress={() => } 
 // onRightPress={() => }
 
-class Header extends Component {
+class ThinHeader extends Component {
 	render() {
-        const { headerStyle, subheaderStyle, 
-            titleStyle, subtitleStyle, 
+        const { headerStyle, 
+            titleStyle, 
             leftIconStyle, rightIconStyle } = styles;
 
 		return (
             <View>
 			<View style={headerStyle}>
 				<LinearGradient colors={['#2c6fb8', '#6bb2ff']}>
-					<View>
-						<Text style={titleStyle}>
-							Panopto Pro
-						</Text>
-						<Text style={subtitleStyle}>
-							{this.props.subtitle}
-						</Text>
-					</View>
-
+                    <Text style={titleStyle}>{this.props.title}</Text>
 					<TouchableOpacity 
 						style={leftIconStyle}
 						onPress={this.props.onLeftPress}>
@@ -43,7 +33,6 @@ class Header extends Component {
 					</TouchableOpacity>
 				</LinearGradient>
             </View>
-            <Text style={subheaderStyle}>{this.props.subheader}</Text>
             </View>
 		);
 	};
@@ -51,37 +40,21 @@ class Header extends Component {
 
 const styles = {
 	headerStyle: {
-        paddingBottom: 20
-    },
-    subheaderStyle: {
-        fontFamily: 'Quicksand-Bold',
-        fontSize: 16,
-        color: '#2c6fb8',
-        textAlign: 'center',
-        paddingBottom: 30
     },
     titleStyle: {
         fontFamily: 'Quicksand-Bold',
         fontSize: 30,
         color: '#fff',
         textAlign: 'center',
-        marginTop: 40
-    },
-    subtitleStyle: {
-        fontFamily: 'Quicksand-Regular',
-        fontSize: 14,
-        color: '#fff',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        letterSpacing: 2,
-        paddingBottom: 35
+        paddingBottom: 10,
+        paddingTop: 10
     },
     leftIconStyle: {
         position: 'absolute',
         height: 45,
         width: 45,
         left: 6,
-        top: 45,
+        top: 10,
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: 'rgba(250, 250, 250, 0.7)',
@@ -100,7 +73,7 @@ const styles = {
         height: 45,
         width: 45,
         right: 6,
-        top: 45,
+        top: 10,
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: 'rgba(250, 250, 250, 0.7)',
@@ -116,4 +89,4 @@ const styles = {
     }
 }
 
-export default Header;
+export default ThinHeader;

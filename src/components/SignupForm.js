@@ -162,7 +162,7 @@ class SignupForm extends Component {
 const styles = {
     titleStyle: {
         fontFamily: 'Quicksand-Bold',
-        fontSize: 26,
+        fontSize: 30,
         color: '#2c6fb8',
         textAlign: 'center',
         marginTop: 25,

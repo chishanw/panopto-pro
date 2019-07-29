@@ -7,10 +7,12 @@ import Header from './common/Header';
 import ListItem from './common/ListItem';
 import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
 
-class ModuleVideoList extends Component {
+class PlaylistsVideoList extends Component {
     _isMounted = false;
-    firestoreRef = firebase.firestore().collection('video-links');
+    userId = firebase.auth().currentUser.uid;
+    firestoreRef = firebase.firestore().collection('playlists').where('user_id', '==', this.userId);
     storageRef = firebase.storage().ref('videos');
+    //doc.data().playlistName.map()
 
     static navigationOptions = {
         header: null
@@ -18,6 +20,8 @@ class ModuleVideoList extends Component {
 
     constructor(){
         super();
+
+        window.test = "hello global??";
         
         this.state = {
             videoNames: [],
@@ -29,37 +33,37 @@ class ModuleVideoList extends Component {
     componentWillMount() {
         this._isMounted = true;
 
-        // const firestoreRef = firebase.firestore().collection('video-links');
-        // const storageRef = firebase.storage().ref('videos');
+        var playlistName = this.props.navigation.getParam('playlistName', 'NA');
+
         var tempNames = [];
         var tempUrls = [];
 
         this.firestoreRef
-        .where('module_code', '==', this.props.navigation.getParam('moduleCode', 'Not Available'))
+        .where('playlist_name', '==', playlistName)
         .get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 tempNames.push({
-                    file_name: doc.id,
                     video_name: doc.data().video_name,
-                    video_date: doc.data().video_date
+                    file_name: doc.data().file_name,
+                    module_code: doc.data().module_code
                 });
+                console.log(doc.data().video_name);
             }.bind(this));
 
             if (this._isMounted) {
                 this.setState( { videoNames: tempNames } );
             }
 
-            this.state.videoNames.forEach((fileObj) => {
-                const fileName = fileObj.file_name;
-                const videoName = fileObj.video_name;
-                const videoDate = fileObj.video_date;
+            this.state.videoNames.forEach((obj) => {
+                var fileName = obj.file_name;
+                var videoName = obj.video_name;
+                var moduleCode = obj.module_code;
 
                 this.storageRef.child(fileName).getDownloadURL().then((url) => {
                     tempUrls.push({
-                        file_name: fileName,
                         file_url: url,
                         video_name: videoName,
-                        video_date: videoDate
+                        module_code: moduleCode
                     });
 
                     this.setState( { loading: false } );
@@ -81,37 +85,28 @@ class ModuleVideoList extends Component {
             return <Spinner size="large" />
         } else {
             return (
-                // <Text>{JSON.stringify(this.state.videoNames[0])}</Text>
                 <View style={{flex: 1}}>
                     <Header 
                         subtitle="videos page"
                         leftIcon="arrow-circle-left"
-                        onLeftPress={() => this.props.navigation.navigate('ModulesPage')}
+                        onLeftPress={() => this.props.navigation.navigate('PlaylistsPage')}
                         subheader="Select a video to view!"
                     />
 
                     <ScrollView style={{flex: 1}}>
                         {this.state.videoUrls.map(eachVideo => {
                             const fileUrl = eachVideo.file_url;
-                            const fileName = eachVideo.file_name;
                             const videoName = eachVideo.video_name;
-                            const videoDate = eachVideo.video_date;
+                            const moduleCode = eachVideo.module_code;
 
                             console.log(eachVideo);
 
                             return <ListItem 
-                                onPress={() => this.props.navigation.navigate('Video', 
-                                    { 
-                                        videoSource: fileUrl,
-                                        fileName: fileName,
-                                        videoName: videoName,
-                                        videoDate: videoDate,
-                                        moduleCode: this.props.navigation.getParam('moduleCode', 'Not Available')
-                                    })}
+                                onPress={() => this.props.navigation.navigate('Video', { videoSource: fileUrl})}
                                 key={fileUrl}
                                 icon={<Icon name="play-circle" color="#6bb2ff" size={34}/>}
                                 title={videoName}
-                                subtitle={videoDate}
+                                subtitle={moduleCode}
                                 />
                             }
                         )}
@@ -122,4 +117,4 @@ class ModuleVideoList extends Component {
     };
 }
 
-export default ModuleVideoList;
+export default PlaylistsVideoList;

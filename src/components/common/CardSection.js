@@ -19,10 +19,16 @@ const styles = {
         paddingTop: 7,
         paddingBottom: 7,
         backgroundColor: '#fff',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         flexDirection: 'row',
         borderColor: '#ddd',
-        position: 'relative'
+        position: 'relative',
+
+        // shadowColor: '#000',
+		// // shadowOffset: { width: 0, height: 2},
+        // shadowOpacity: 0.8,
+        // shadowRadius: 2,
+        // // elevation: 1,
     }
 };
 

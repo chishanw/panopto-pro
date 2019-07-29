@@ -5,11 +5,12 @@ import CardSection from './common/CardSection';
 import Input from './common/Input';
 import MyButton from './common/MyButton';
 import Spinner from './common/Spinner';
+import Header from './common/Header';
 import firebase from 'firebase';
 
 class ChangePassword extends Component {
     static navigationOptions = {
-        title: 'Change Password'
+        header: null
     }
 
     state = {
@@ -65,6 +66,11 @@ class ChangePassword extends Component {
     render() {
         return (
             <View style={{flex: 1, alignSelf: 'stretch'}}>
+                <Header
+                    subtitle="update password"
+                    leftIcon="arrow-circle-left"
+                    onLeftPress={() => this.props.navigation.navigate('Profile')} 
+                />
                 <Card 
                     titleAvailable={true} 
                     cardTitle="Change Password" 

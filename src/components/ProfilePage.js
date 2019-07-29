@@ -6,10 +6,11 @@ import SectionHeader from './common/SectionHeader';
 import SectionButton from './common/SectionButton';
 import Icon from '../../node_modules/react-native-vector-icons/FontAwesome';
 import Spinner from './common/Spinner';
+import Header from './common/Header';
 
 class ProfilePage extends Component {
     static navigationOptions = {
-        title: 'Profile'
+        header: null
     }
 
     state = {
@@ -60,6 +61,12 @@ class ProfilePage extends Component {
 
         return (
             <View>
+                <Header 
+                    subheader="View your profile here."
+                    subtitle="profile page"
+                    leftIcon="arrow-circle-left"
+                    onLeftPress={() => this.props.navigation.navigate('Home')}
+                />
             <View style={containerStyle}>
                 <View style={cardStyle}>
                     <View style={{ paddingTop: 60, paddingBottom: 15 }}>

@@ -3,17 +3,18 @@ import Video from 'react-native-video';
 import {
     TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity,
     ImageBackground, PanResponder, StyleSheet, Animated,
-    Easing, Image, View, Text
+    Easing, Image, View, Text, Modal
 } from 'react-native';
+import Icon from '../../../node_modules/react-native-vector-icons/FontAwesome';
 import _ from 'lodash';
+import firebase from 'firebase';
+import ListItem from './ListItem';
 
 export default class VideoScreen extends Component {
 
-    static navigationOptions = ({navigation}) => {
-        return {
-            headerVisible: navigation.getParam('headerVisible', true)
-        };
-    };
+    static navigationOptions = {
+        
+    }
 
     static defaultProps = {
         toggleResizeModeOnFullscreen:   true,
@@ -62,7 +63,11 @@ export default class VideoScreen extends Component {
             error: false,
             duration: 0,
 
-            videoUrl: ''
+            videoUrl: '',
+
+            modalVisible: false,
+            playlistsArr: [],
+            selectedPlaylist: '',
         };
 
         /**
@@ -147,6 +152,11 @@ export default class VideoScreen extends Component {
             containerStyle: this.props.style || {}
         };
     }
+
+    
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+    } 
 
     /**
     | -------------------------------------------------------
@@ -667,8 +677,24 @@ export default class VideoScreen extends Component {
      */
     componentWillMount() {
         const { navigation } = this.props;
-        const sauce = navigation.getParam('videoSource');
+        const sauce = navigation.getParam('videoSource', 'unavailable');
         this.setState({videoUrl: sauce});
+
+        var tempArr = [];
+
+        firebase.firestore().collection('playlistNames')
+            .where('userId', '==', firebase.auth().currentUser.uid)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    var playlistName = doc.data().playlistName;
+                    tempArr.push(playlistName);
+                }.bind(this));
+
+                this.setState({
+                    playlistsArr: tempArr
+                })
+            }.bind(this))
 
         this.initSeekPanResponder();
         this.initVolumePanResponder();
@@ -1037,23 +1063,70 @@ export default class VideoScreen extends Component {
      */
     renderTitle() {
 
-        if ( this.opts.title ) {
-            return (
-                <View style={[
-                    styles.controls.control,
-                    styles.controls.title,
-                ]}>
+        // if ( this.opts.title ) {
+        //     return (
+        //         <View style={[
+        //             styles.controls.control,
+        //             styles.controls.title,
+        //         ]}>
+        //             <Text style={[
+        //                 styles.controls.text,
+        //                 styles.controls.titleText
+        //             ]} numberOfLines={ 1 }>
+        //                 { this.opts.title || '' }
+        //             </Text>
+        //         </View>
+        //     );
+        // }
+
+        // {
+        //     var firestoreRef = firebase.firestore().collection('playlists');
+        //     var userId = firebase.auth().currentUser.uid;
+        //     firestoreRef.doc(userId).set({
+        //         video_name: this.state.videoUrl,
+        //         playlist_name: 'Hellotest'
+        //     })
+        // }
+
+        return (
+            <View style={[
+                styles.controls.control,
+                styles.controls.title,
+            ]}>
+                <TouchableOpacity
+                    onPress={() => this.setModalVisible(true)}>
                     <Text style={[
                         styles.controls.text,
                         styles.controls.titleText
                     ]} numberOfLines={ 1 }>
-                        { this.opts.title || '' }
+                        { 'Add to Playlist' }
                     </Text>
-                </View>
-            );
-        }
+                </TouchableOpacity>
+            </View>
+        );
 
-        return null;
+        // return null;
+    }
+
+    addToPlaylist() {
+        var firestoreRef = firebase.firestore().collection('playlists');
+        var userId = firebase.auth().currentUser.uid;
+
+        // videoSource: fileUrl,
+        // videoName: videoName,
+        // videoDate: videoDate,
+        // moduleCode: this.props.navigation.getParam('moduleCode', 'Not Available')
+
+            if (this.state.selectedPlaylist.length != 0) {
+                firestoreRef.add({
+                    file_name: this.props.navigation.getParam('fileName', 'NA'),
+                    video_name: this.props.navigation.getParam('videoName', 'NA'),
+                    video_date: this.props.navigation.getParam('videoDate', 'NA'),
+                    module_code: this.props.navigation.getParam('moduleCode', 'NA'),
+                    playlist_name: this.state.selectedPlaylist,
+                    user_id: userId
+                })
+            }
     }
 
     /**
@@ -1154,6 +1227,30 @@ export default class VideoScreen extends Component {
                     { this.renderTopControls() }
                     { this.renderLoader() }
                     { this.renderBottomControls() }
+
+                    <Modal 
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => this.setState({modalVisible: false})}>
+                        
+                        <View style={styles.modalOuterStyle}>
+                            <View style={styles.modalInnerStyle}>
+                                {
+                                    this.state.playlistsArr.map(eachPlaylist => {
+                                        return (
+                                            <TouchableOpacity
+                                                onPress={() => this.setState({selectedPlaylist: eachPlaylist})}
+                                            >
+                                                <Text style={{paddingBottom: 10}}>{eachPlaylist}</Text>
+                                            </TouchableOpacity>
+                                        );
+                                    })
+                                }
+                                {this.addToPlaylist()}
+                            </View>
+                        </View>
+                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -1166,6 +1263,17 @@ export default class VideoScreen extends Component {
  * And then there's volume/seeker styles.
  */
 const styles = {
+    modalOuterStyle: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#00000080'
+    },
+    modalInnerStyle: {
+        backgroundColor: '#fff',
+        padding: 15
+    },
     player: StyleSheet.create({
         container: {
             backgroundColor: '#000',
@@ -1301,6 +1409,7 @@ const styles = {
         },
         titleText: {
             textAlign: 'center',
+            textDecorationLine: 'underline'
         },
         timer: {
             width: 80,

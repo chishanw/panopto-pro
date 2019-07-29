@@ -5,8 +5,12 @@ import { Text, TouchableOpacity } from 'react-native';
 //buttonText: text on the button
 //onPress: function that is called when the button is pressed
 
-const MyButton = ({ buttonText, onPress }) => {
+var buttonColor = '#6bb2ff';
+
+const MyButton = ({ buttonText, onPress, color }) => {
     const { buttonStyle, textStyle } = styles;
+
+    buttonColor = {color};
 
     return (
         <TouchableOpacity onPress={onPress} style={buttonStyle}>
@@ -20,17 +24,23 @@ const MyButton = ({ buttonText, onPress }) => {
 const styles = {
     buttonStyle: {
         height: 30,
-        flex: 1,
-        alignSelf: 'stretch',
+        // flex: 1,
+        alignSelf: 'center',
         justifyContent: 'center',
-        backgroundColor: '#3586de',
+        backgroundColor: buttonColor,
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: "#3586de",
-        marginLeft: 110,
-        marginRight: 110,
+        borderColor: buttonColor,
+        // marginLeft: 110,
+        // marginRight: 110,
         paddingTop: 3,
         paddingBottom: 3,
+
+        shadowColor: '#000',
+		// shadowOffset: { width: 0, height: 2},
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 3
     },
     textStyle: {
         fontFamily: 'UniversLTStd-Bold',
@@ -38,7 +48,9 @@ const styles = {
         color: '#fff',
         alignSelf: 'center',
         paddingTop: 4,
-        paddingBottom: 4
+        paddingBottom: 4,
+        paddingRight: 24,
+        paddingLeft: 24
     }
 }
 

@@ -75,7 +75,7 @@ const AppContainer = createAppContainer(AppStackNavigator);
 export default class App extends React.Component {
   componentWillMount() {
     firebase.initializeApp({
-        apiKey: "AIzaSyAMehQZgaPdND4kAIu3Jq1smr93V-kQg7Y",
+        apiKey: "",
         authDomain: "panoptopro.firebaseapp.com",
         databaseURL: "https://panoptopro.firebaseio.com",
         projectId: "panoptopro",
